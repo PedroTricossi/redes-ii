@@ -1,3 +1,8 @@
+'''
+    Canhao UDP
+    trabalho feito para a disciplina de redes II
+    Alunos: Pedro Tricossi e Carlos Cichon
+'''
 import socket
 
 localIP     = "200.17.202.34"
@@ -5,24 +10,20 @@ localPort   = 20001
 bufferSize  = 1024
 contador = 0
 true_m = 0
+MENSAGENS_ENVIADAS = 800000
 
-msgFromServer       = "Hello UDP Client"
-
-bytesToSend         = str.encode(msgFromServer)
-
-# Create a datagram socket
+# Cria socket datagram (mais facil que em C :))
 
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
-# Bind to address and ip
+# Faz o bind com IP
 
 UDPServerSocket.bind((localIP, localPort))
 
 print("UDP server up and listening")
 
  
-
-# Listen for incoming datagrams
+# Escuta as mensagens do cliente :o
 
 while(true_m != 800007):
 
@@ -43,5 +44,6 @@ while(true_m != 800007):
     print(clientMsg)
     print(clientIP)
 
-perdas  = 800000 - contador
-print(f'a perda foi de: {perdas} mensagens')
+perdas  = MENSAGENS_ENVIADAS - contador
+print(f'Foram enviadas {MENSAGENS_ENVIADAS} mensagens - Foram perdidas {perdas}')
+print(f'Apenas {(1 - (perdas / MENSAGENS_ENVIADAS)) * 100}% das mensagens chegaram')

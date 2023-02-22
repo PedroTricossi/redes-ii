@@ -1,7 +1,7 @@
-/* fpont 12/99 */
-/* pont.net    */
-/* udpClient.c */
-
+/* Canhao UDP
+   trabalho feito para a disciplina de redes II
+   Alunos: Pedro Tricossi e Carlos Cichon
+*/
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -25,13 +25,13 @@ int main(int argc, char *argv[]) {
   int j=-1;
   long i=0;
   
-  /* check command line args */
+  // pega os argumentos da linha de comando
   if(argc<3) {
-    printf("usage : %s <server> <data1> ... <dataN> \n", argv[0]);
+    printf("usage : %s <server> \n", argv[0]);
     exit(1);
   }
 
-  /* get server IP address (no check if input is IP address or DNS name */
+  // Ip do server e consulta a tabela de nomes
   h = gethostbyname(argv[1]);
   if(h==NULL) {
     printf("%s: unknown host '%s' \n", argv[0], argv[1]);
@@ -46,14 +46,14 @@ int main(int argc, char *argv[]) {
 	 h->h_addr_list[0], h->h_length);
   remoteServAddr.sin_port = htons(REMOTE_SERVER_PORT);
 
-  /* socket creation */
+  // Cria socket
   sd = socket(AF_INET,SOCK_DGRAM,0);
   if(sd<0) {
     printf("%s: cannot open socket \n",argv[0]);
     exit(1);
   }
   
-  /* bind any port */
+  // faz o bind
   cliAddr.sin_family = AF_INET;
   cliAddr.sin_addr.s_addr = htonl(INADDR_ANY);
   cliAddr.sin_port = htons(0);
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
   }
 
 
-  /* send data */
+  // Envia os dados
   for(i=0;i<NUM_TESTE;i++) {
     rc = sendto(sd, &i, sizeof(int)+1, 0, (struct sockaddr *) &remoteServAddr, sizeof(remoteServAddr));
 
@@ -76,8 +76,8 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  for(int i=0;i<420;i++){
-    
+  // Envia Fim de comunicacao
+  for(int i=0;i<420;i++){    
     rc = sendto(sd, &j, sizeof(int)+1, 0, (struct sockaddr *) &remoteServAddr, sizeof(remoteServAddr));
   }
   
