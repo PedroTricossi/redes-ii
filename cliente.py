@@ -11,11 +11,11 @@ serverAddressPort   = ("200.17.202.34", 20001)
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
 # Envia 800000 mensagens para o servidor
-for i in range(800000):
+for i in range(62000):
     # print(i)
     UDPClientSocket.sendto(i.to_bytes(10, 'big'), serverAddressPort)
 
 # Envia mensagem de termino
-for i in range(1000):
+for i in range(420):
     i = 800007
     UDPClientSocket.sendto(i.to_bytes(10, 'big'), serverAddressPort)

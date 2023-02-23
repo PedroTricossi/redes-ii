@@ -10,7 +10,7 @@ localPort   = 20001
 bufferSize  = 1024
 contador = 0
 true_m = 0
-MENSAGENS_ENVIADAS = 800000
+MENSAGENS_ENVIADAS = 62000
 
 # Cria socket datagram (mais facil que em C :))
 
