@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Canhão UDP</title>
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+
+    </head>
+    <body>
+        <h1>Canhão UDP</h1>
+        <h2>Pedro Tricossi e Carlos Eduardo Cichon</h2>
+
+        <section id="versoes">
+            <h3>Versões</h3>
+            <p class="p3">Nós optamos por desenvolver o trabalho nas linguagens C e Python, tanto cliente como servidores. Disponíveis aqui:</p>
+            <a class="p3" href="client.c.txt">Cliente C</a>
+            <a href="server.c.txt">Servidor C</a>
+            <br>
+            <a class="p3"href="cliente.py.txt">Cliente Python</a>
+            <a href="server.py.txt">Servidor Python</a>
+            <h4>Versão C:</h4>
+            <p class="p4">A nossa versão em C foi feita de forma em que pode ser executada em 2 hosts quaisquer com acesso a internet (um cliente e um servidor), informando apenas o nome ou IP do servidor na chamada do cliente.</p>
+            <p class="p4">Nesta versão, a comunicação é feita via porta 5678</p>
+            <h4>Versão Python:</h4>
+            <p class="p4">A nossa versão em Python, foi desenvolvida como alternativa em avaliar a quantidade de mensagens que realmente chegam, então não é possível configurar a origem/desteno.</p>
+            <p class="p4">O servidor deve rodar na máquina virtual do dinf cpu1. Enquanto o cliente deve rodar na orval.</p>
+            <p class="p4">Nesta versão, a comunicação é feita via porta 20001</p>
+
+        </section>
+
+        <section>
+            <h3>Implementação</h3>
+            <p class="p3">Em ambas as versões, o nosso canhão funciona da mesma maneira: </p>
+            <h4>Servidor</h4>
+            <ol class="p4">
+                <li>O servidor é executado</li>
+                <li>O socket é aberto, bind realizado, servidor começa a escutar a porta</li>
+                <li>O servidor recebe novas mensagens, até que a mensagem -1 chegue.</li>
+                <li>A cada mensagem recebida o servidor incrementa um contador de mensagens</li>
+                <li>O servidor recebe a mensagem -1.</li>
+                <li>O servidor para de receber novas mensagens</li>
+                <li>O servidor imprime a análise de recebimento</li>
+                <li>O servidor encerra</li>
+            </ol>
+            <h4>Cliente</h4>
+            <ol class="p4">
+                <li>O cliente é executado</li>
+                <li>O socket é aberto, bind realizado, servidor começa a escutar a porta</li>
+                <li>O cliente envia 62000 mensagens para o servidor.</li>
+                <li>O cliente envia a mensagem -1 (420x para garantir que não seja perdida)</li>
+                <li>O servidor encerra</li>
+            </ol>
+            <img src="Diagrama de rede genérico.png" alt="">
+
+        </section>
+
+        <section id="utilizacao">
+            <h3>Utilização</h3>
+            <h4>Versão C:</h4>
+            <p class="p4">A versão desenvolvida em C funciona da seguinte forma:</p>
+            <ul class="p4">
+                <li>Cliente: ./client &lt;servidor&gt; </li>
+                <li>Servidor: ./server</li>
+            </ul>
+            <p class="p4">Onde &lt;servidor&gt; é o nome ou IP do servidor para qual o canhão mandará os dados.</p>
+            <h4>Versão Python:</h4>
+            <p class="p4">A versão desenvolvida em Python funciona da seguinte forma:</p>
+            <ul class="p4">
+                <li>Cliente: python3 cliente.py</li>
+                <li>Servidor: python3 server.py</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Resultados</h3>
+            <p class="p3">Em ambos os casos, rodamos 10 vezes o canhão e extraímos a média da porcentagem de mensagens entregues de cada um.</p>
+            <h4>Versão C</h4>
+            <p class="p4">A versão em C de nosso canhão obteve o seguinte resultado: 100% de mensagens entregues, sempre!</p>
+            <h4>Versão Python</h4>
+            <p class="p4">A versão em Python de nosso canhão obteve o seguinte resultado: 43,282% de mensagens entregues</p>
+            <p class="p3">Nós acreditamos que a menor taxa de mensagens recebidas na versão implementada em python se deve a quantidade de processamento que as estruturas internas da linguagem fazem, antes de conseguir processar um novo pacote que chegou, ocasionando perda de alguns.</p>
+        </section>
+  
+    </body>
+    <footer>
+
+    </footer>
+</html>
