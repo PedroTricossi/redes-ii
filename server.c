@@ -92,6 +92,7 @@ int main(int argc, char *argv[]) {
   printf("[INFO] O servidor recebeu %ld mensagens! \n", i);
   printf("[INFO] Foram perdidas %ld mensagens!!! \n", (NUM_TESTE - i));
   printf("[INFO] Foram perdidas %.2f%s mensagens!!! \n", div, "%");
+  fclose(log);
 
   return 0;
 }

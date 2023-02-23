@@ -101,7 +101,8 @@ int main(int argc, char *argv[]) {
     fprintf(log, "%s: sent end of comunication \n", argv[0]);
     rc = sendto(sd, &j, sizeof(int)+1, 0, (struct sockaddr *) &remoteServAddr, sizeof(remoteServAddr));
   }
-  
+
+  fclose(log);
   return 1;
 
 }

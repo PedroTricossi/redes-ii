@@ -1,0 +1,22 @@
+h1, h2 {
+    text-align: center;
+}
+
+#versoes, #utilizacao{
+    text-align: left;
+}
+
+h3 {
+    margin-left: 2%;
+}
+.p3 {
+    margin-left: 3%;
+}
+
+h4 {
+    margin-left: 4%;
+}
+
+.p4 {
+    margin-left: 5%;
+}
